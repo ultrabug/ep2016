@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Europython 2016 Talk</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" style="color: {{ color }};">Europython 2016 - Dynamic python applications using Service Discovery</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron" style="background: {{ color }};">
+        <h3><b>This color is (re)configured</b> in the 3 service discovery key/value stores <b>every time this page is (re)loaded</b> and will be used dynamically by the hosts' web applications.</h3>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" style="background: #f4a447">
+          <h3 class="panel-title">Available hosts on <b>Zookeeper</b></h3>
+        </div>
+        <div class="panel-body">
+
+          {% if zookeeper_hosts|default([]) %}
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Hostname</th>
+                    <th>Port</th>
+                    <th>View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for host, port in zookeeper_hosts %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ host }}</td>
+                    <td>{{ port }}</td>
+                    <td><a href="http://{{ host }}:{{ port }}" target="_blank" type="button" class="btn btn-xs btn-success">View</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% else %}
+          <div class="alert alert-danger" role="alert">
+            <strong>Onoes!</strong> No host discovered.
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" style="background: #4a86e8">
+          <h3 class="panel-title">Available hosts on <b>etcd</b></h3>
+        </div>
+        <div class="panel-body">
+
+          {% if etcd_hosts|default([]) %}
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Hostname</th>
+                    <th>Port</th>
+                    <th>View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for host, port in etcd_hosts %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ host }}</td>
+                    <td>{{ port }}</td>
+                    <td><a href="http://{{ host }}:{{ port }}" target="_blank" type="button" class="btn btn-xs btn-success">View</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% else %}
+          <div class="alert alert-danger" role="alert">
+            <strong>Onoes!</strong> No host discovered.
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" style="background: #674ea7">
+          <h3 class="panel-title">Available hosts on <b>Consul</b></h3>
+        </div>
+        <div class="panel-body">
+
+          {% if consul_hosts|default([]) %}
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Hostname</th>
+                    <th>Port</th>
+                    <th>View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for host, port in consul_hosts %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ host }}</td>
+                    <td>{{ port }}</td>
+                    <td><a href="http://{{ host }}:{{ port }}" target="_blank" type="button" class="btn btn-xs btn-success">View</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% else %}
+          <div class="alert alert-danger" role="alert">
+            <strong>Onoes!</strong> No host discovered.
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  </body>
+</html>

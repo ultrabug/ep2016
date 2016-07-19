@@ -1,0 +1,4 @@
+flask==0.11.1
+python-consul==0.6.1
+python-etcd==0.4.3
+zc.zk==2.1.0
